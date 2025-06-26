@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webman_app
+    ports:
+      - "8080:8787"
+    volumes:
+      - ./webman-app:/var/www/webman-app
+      - ./php.ini:/etc/php/8.1/cli/php.ini   # Đảm bảo khớp với PHP version nếu cần
+    depends_on:
+      - mysql
+    networks:
+      - webman_net
+    dns:
+      - 8.8.8.8
+    entrypoint: ["/entrypoint.sh"]
+
+  mysql:
+    image: mysql:8.0
+    container_name: webman_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: webman_db
+      MYSQL_USER: webman
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d  # Chạy init.sql tự động
+    networks:
+      - webman_net
+
+volumes:
+  db_data:
+
+networks:
+  webman_net:

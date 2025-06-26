@@ -1,25 +1,36 @@
-# CakePHP 3
+# Bỏ thư mục vendor (người dùng sẽ chạy composer install để tạo lại)
+vendor/
 
-/vendor/*
-/config/app.php
+# Runtime, log, cache
+runtime/
 
-/tmp/cache/models/*
-!/tmp/cache/models/empty
-/tmp/cache/persistent/*
-!/tmp/cache/persistent/empty
-/tmp/cache/views/*
-!/tmp/cache/views/empty
-/tmp/sessions/*
-!/tmp/sessions/empty
-/tmp/tests/*
-!/tmp/tests/empty
+# Các file hệ thống/OS
+.DS_Store
+Thumbs.db
 
-/logs/*
-!/logs/empty
+# File môi trường chứa thông tin nhạy cảm
+.env
 
-# CakePHP 2
+# Docker volumes
+db_data/
 
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+# Các file hệ điều hành Windows/Mac
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Composer lock nếu không muốn lock version
+# composer.lock
+
+# VSCode settings (nếu bạn không muốn chia sẻ config cá nhân)
+.vscode/
+
+# PHPStorm
+.idea/
+
+# Node nếu có (nếu bạn dùng thêm frontend sau này)
+node_modules/
+
+# Các file build
+/public/build/
