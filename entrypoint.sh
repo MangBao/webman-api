@@ -2,14 +2,17 @@
 
 cd /var/www/webman-app
 
-# Chờ MySQL container sẵn sàng
-echo "⏳ Đợi MySQL khởi động..."
-until nc -z -v -w30 mysql 3306
-do
-  echo "❗ Chưa kết nối được MySQL, đợi tiếp..."
+# Thiết lập mặc định nếu không có ENV (hữu ích cho local)
+DB_HOST=${DB_HOST:-mysql}
+DB_PORT=${DB_PORT:-3306}
+
+echo "⏳ Đợi MySQL khởi động tại $DB_HOST:$DB_PORT..."
+
+# Đợi MySQL sẵn sàng
+until nc -z "$DB_HOST" "$DB_PORT"; do
+  echo "❗ Chưa kết nối được MySQL ($DB_HOST:$DB_PORT), đợi tiếp..."
   sleep 2
 done
-echo "✅ Đã kết nối được MySQL"
 
 # Cài Webman nếu chưa có
 if [ ! -f "start.php" ]; then
