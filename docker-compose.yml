@@ -18,6 +18,12 @@ services:
     dns:
       - 8.8.8.8
     entrypoint: ["/entrypoint.sh"]
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=webman_db
+      - DB_USERNAME=webman
+      - DB_PASSWORD=1234
+      - DB_PORT=3306
 
   mysql:
     image: mysql:8.0
