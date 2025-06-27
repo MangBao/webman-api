@@ -12,17 +12,5 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-use Webman\Route;
-use app\controller\UserController;
-
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
-Route::post('/users', [UserController::class, 'store']);
-Route::put('/users/{id}', [UserController::class, 'update']);
-Route::delete('/users/{id}', [UserController::class, 'destroy']);
-
-
-
-
-
-
+require_once __DIR__ . '/routes/api.php';
+require_once __DIR__ . '/routes/swagger.php';

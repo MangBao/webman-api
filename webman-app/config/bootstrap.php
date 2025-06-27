@@ -11,7 +11,9 @@
  * @link      http://www.workerman.net/
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
+if (!class_exists(\support\Model::class)) {
+    class_alias(\think\Model::class, \support\Model::class);
+}
 return [
     support\bootstrap\Session::class,
     Webman\ThinkOrm\ThinkOrm::class,
