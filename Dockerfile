@@ -18,6 +18,9 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# Copy thư mục chứa tài nguyên cấu hình swagger
+COPY docker-resources /docker-resources
+
 # Thư mục làm việc của Webman
 WORKDIR /var/www/webman-app
 

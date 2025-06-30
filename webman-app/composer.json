@@ -52,5 +52,8 @@
     ]
   },
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "require-dev": {
+    "zircote/swagger-php": "^5.1"
+  }
 }
