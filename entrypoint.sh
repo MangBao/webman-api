@@ -16,6 +16,15 @@ if ! grep -q "getenv('DB_HOST')" "$DB_CONFIG"; then
   cp /docker-resources/config/database.php "$DB_CONFIG"
 fi
 
+# Chỉ tạo nếu chưa tồn tại (để không ghi đè khi người dev chỉnh sửa thủ công)
+if [ ! -f app/controller/UserController.php ]; then
+  cp /docker-resources/controller/UserController.php app/controller/UserController.php
+fi
+
+if [ ! -f app/model/User.php ]; then
+  cp /docker-resources/model/User.php app/model/User.php
+fi
+
 # Thiết lập mặc định nếu không có ENV (hữu ích cho local)
 DB_HOST=${DB_HOST:-mysql}
 DB_PORT=${DB_PORT:-3306}
